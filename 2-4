@@ -1,0 +1,143 @@
+인터페이스 interface 파트 1
+(인터페이스가 없어도 프로그래밍은 가능함B 그래픽한 프로그래밍을 하기 위해서 공부하는 것)
+
+다중상속 
+1. 자바에서는 2개이상의 상속이 불가능하다
+2. 다중상속이 필요하다고 느낄 때는 '구현'하자. (상속 대신에!)
+    (상속 extends / 구현 implements) - 구현은 여러개 가능 
+3. 뭐로? 인터페이스로!
+
+상속과 구현의 차이
+a. extends, 상속은 아이덴티티를 보유한다. 
+   a) '개는 동물이다'
+b. implements, 구현은 역할을 부여한다
+   b) '개는 애완동물이다'
+c. 구현은 변수를 상속받지 않는다 = 오로지 매서드만 가짐 
+
+첫번째 클래스
+package gnuvill;
+
+public abstract class animal {
+	// abstract는 추상클래스
+	
+	public String name;
+	public animal(String name) {this.name=name;}
+	public abstract void cry();
+	
+}
+
+두번째 클래스 
+package gnuvill;
+
+public class dog extends animal{
+
+	public dog(String name) {super(name);}
+	
+	@Override
+	public void cry() {
+		System.out.println(name+"~~~~~~~~~~~~");
+	}
+}
+
+세번째 클래스
+package gnuvill;
+
+public class cat extends animal {
+
+public cat(String name) {super(name);}
+	
+	@Override
+	public void cry() {
+		System.out.println(name+"!"+name+"!");
+		
+	}
+}
+
+네번째 클래스 
+package gnuvill;
+
+public class allanimal {
+	public static void main(String []args) {
+		
+		animal dog = new dog("baduk");
+		animal cat = new cat("nyong");
+		
+		dog.cry();
+		cat.cry();
+	}
+
+}
+
+
+이 추상클래스에 인터페이스를 추가하면, 
+
+첫번째 클래스
+package gnuvill;
+
+public abstract class animal {
+	// abstract는 추상클래스
+	
+	public String name;
+	public animal(String name) {this.name=name;}
+	public abstract void cry();
+	public void foodcall() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
+두번째 클래스
+package gnuvill;
+
+public class dog extends animal implements pet{
+
+	public dog(String name) {super(name);}
+	
+	@Override
+	public void cry() {
+		System.out.println(name+"~~~~~~~~~~~~");
+	}
+	
+	@Override
+	public void foodcall(){
+		System.out.println(name+"~~~~!");
+	}
+}
+
+세번째 클래스
+package gnuvill;
+
+public class cat extends animal implements pet{
+
+public cat(String name) {super(name);}
+	
+	@Override
+	public void cry() {
+		System.out.println(name+"!"+name+"!");
+	}
+	
+	@Override
+	public void foodcall() {
+		System.out.println("....");
+	}
+}
+
+네번째 클래스
+package gnuvill;
+
+public class allanimal {
+	public static void main(String []args) {
+		
+		animal dog = new dog("baduk");
+		animal cat = new cat("nyong");
+		
+		pet pet1 = new cat("nnyong");
+		pet pet2 = new dog("baduk");
+		
+		pet1.foodcall();
+		pet2.foodcall();
+	}
+
+}
+
