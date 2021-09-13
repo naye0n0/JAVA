@@ -1,0 +1,91 @@
+인터페이스 파트2
+
+인터페이스의 쓰임새
+1. 다중상속
+2. 콜백 매소드
+
+-----이번에는 콜백 매소드 살펴봄----
+
+CALL BACK
+1. 사용자가 버튼을 눌렀을 때 뭔가 하고싶어
+2. 앱을 사용하다가 홈버튼을 누르면 어떻게 처리하지?
+3. 다운로드가 완료되었으면 알림을 울릴 수 없을까?
+
+ 
+어떤 것이 콜백이지? 
+A. 콜백 메소드는 보통 onClick, onTouch, onPressed 등 on~이 붙는다
+B. 콜백을 정의한 인터페이스는 보통 OnClickListener, OnTouchListener 등 Listener가 붙는다
+
+첫번쨰 클래스
+package gnuvill;
+
+import java.lang.Thread;
+
+public class downloader {
+	
+	private ondownloadlistener mlistener;
+	
+	public downloader(ondownloadlistener listener) {
+		mlistener = listener;
+	}
+
+	public void start() {
+		
+		System.out.println("Download Start");
+	
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		mlistener.ondoenloadfinish();
+
+		
+	}
+}
+
+두번째 클래스
+package gnuvill;
+
+public interface ondownloadlistener {
+	
+	void ondoenloadfinish();
+	void ondownfailed();
+}
+
+세번째 클래스
+package gnuvill;
+
+public class browser implements ondownloadlistener{
+
+	void imgclick() {
+		downloader loader = new downloader(this);
+		loader.start();
+	}
+	
+	@Override
+	public void ondoenloadfinish() {
+		
+		System.out.println("Browser: ondownfinish()");
+	}
+	public void ondownfailed() {
+		
+	}
+
+}
+
+네번째 클래스
+package gnuvill;
+
+public class newbrowser {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		browser browser = new browser();
+		browser.imgclick();
+	}
+
+}
