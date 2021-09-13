@@ -1,0 +1,52 @@
+예외처리
+
+언제 예외가 발생하냐? 
+1. 실패할 경우가 있는 매소드에 한해서
+2. 인터넷이 끊겼거나, 사용자의 입력값이 이상할때 
+3. 실패했을 때 자연스럽게 대처하는 코드를 작성한다. 
+
+try, catch, (finally)
+
+void Method1() throws Exception{
+	if(isInternetOff){
+	throw new Exception("인터넷 안됨");
+}
+else if(isWrongInput){
+	throw new Exception("잘못된 입력")
+}
+}
+
+
+코드 작성한 것
+
+package gnuvill;
+
+public class exception {
+	public static void main(String[]args) {
+	
+		try {
+			boolean isSuccess = login("g82","1234");
+			if(isSuccess)System.out.println("Login success");
+			else System.out.println("Login failed");
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			System.out.println("copyright g82 2015");
+		}
+	}
+	static boolean login(String id, String pw) throws Exception{
+		
+		boolean isNetworkFailed = false;
+		boolean isNoId = false;
+		boolean isPasswordWrong = false;
+		boolean isPWExpired = false;
+		
+		if(isNetworkFailed) throw new Exception("Network Failed");
+		else if(isNoId) throw new Exception("user ID no exist");
+		else if(isPasswordWrong) throw new Exception("Password Wrong");
+		else if(isPWExpired) throw new Exception("Need change password");
+		
+		return true;
+	}
+}
+
