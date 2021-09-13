@@ -1,0 +1,148 @@
+부모와 자식 
+1. 클래스는 부모와 자식 관계를 가질 수 있다.
+2. 자식 클래스는 부모 클래스가 물려준 변수와 메서드를 상속받는다.
+3. 모든 클래스는 object라는 클래스를 상속받는다 
+4. 하나만 상속받을 수 있음 
+
+player 과 enemy가 같은 코드, 속성 가지고 있으니까 
+-> 부모클래스에다가 공통된 것 묶을 수 있을 것임 
+
+2-1을 character 과 game1로 나눠서 하면 
+
+첫번째 클래스 
+package gnuvill;
+
+public class character {
+	String name;
+	int hp;
+	int atk;
+	
+	public character(String name, int hp,int atk){
+		this.name=name;
+		this.hp=hp;
+		this.atk=atk;
+	}
+	
+	public void attack(character enemy) {
+		System.out.println(this.name+"Attack!");
+		enemy.hp-=this.atk;
+		System.out.println(enemy.name+"HP: "+enemy.hp);
+	}
+	public boolean islive() {
+		if(hp<=0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+
+		
+	}
+
+
+두번째 클래스
+package gnuvill;
+
+public class game1 {
+	public static void main(String[]args) {
+		
+		character player = new character("gamepari",100,12);
+		character enemy = new character("Orc",80,5);
+
+	
+		while(player.islive() && enemy.islive()){
+			player.attack(enemy);
+			if(!enemy.islive()) break; 
+			//false가 되면 반복문이 돌아가지 않으므로 ! 붙여서 돌아가게 
+			enemy.attack(player);
+			
+		}
+		if (player.islive()){
+			System.out.println("player win");
+		}else {
+			System.out.println("enemy win");
+		}
+		
+	}
+}
+
+이렇게 됨!
+
+이걸 상속 이용해서 나타내보면 
+
+첫번째 클래스 
+package gnuvill;
+
+public class playercharacter extends character {
+
+	public playercharacter(String name, int hp, int atk) {
+		super(name, hp, atk);
+		// TODO Auto-generated constructor stub
+	}
+	public void Heal() {
+		hp+=20;
+		System.out.println(name+"HEAL!!!");		
+		System.out.println(name+"HP: "+hp);
+	}
+
+}
+
+두번째 클래스
+package gnuvill;
+
+public class enemycharacter extends character {
+
+	public enemycharacter(String name, int hp, int atk) {
+		super(name, hp, atk);
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override    //어디선가 상속받은 매서드다 라는 표식(안적어도 상관없지만 가독성 위해)
+	//추가적인 기능 넣는 것
+	public void attack(character enemy) {
+		
+		if(hp<=20) {
+			System.out.println("Orc is angry..>0<!!!!");
+			this.atk +=15;
+		}
+		super.attack(enemy);
+		
+		playercharacter player = (playercharacter)enemy; //형변환
+		
+		if(player.hp<=30) {
+			player.Heal();
+		}
+	}
+
+}
+
+세번째 클래스
+package gnuvill;
+
+public class game1 {
+	public static void main(String[]args) {
+		
+		playercharacter player = new playercharacter("gamepari",100,12);
+		enemycharacter enemy = new enemycharacter("Orc",80,5);
+
+	
+		while(player.islive() && enemy.islive()){
+			player.attack(enemy);
+			if(!enemy.islive()) break; 
+			//false가 되면 반복문이 돌아가지 않으므로 ! 붙여서 돌아가게 
+			enemy.attack(player);
+			System.out.println("------------------");
+			
+		}
+		if (player.islive()){
+			System.out.println("player win");
+		}else {
+			System.out.println("enemy win");
+		}
+		
+	}
+}
+	
+
+
+
