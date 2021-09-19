@@ -1,0 +1,27 @@
+Intent 인텐트 - 의사소통이 가능하도록 해주는 것 
+
+Intent는 우편배달부
+1. 액티비티-액티비티(Service-BroadcastReciver)
+2. 앱-앱
+3. 편지부터 택배까지 배달해주는 우편 배달부 
+
+- 인텐트는 두가지 타입이 있음
+
+1. 명시적 Intent
+보낸이와 받는이가 명시되어있다. 
+Intent intent = new Intent(this, NewActivity.class);
+startActivity(intent);
+
+인텐트를 new intent 객체로 만들고, this(이건 이전에 언급된 액티비티일 것임) -> NewActivity.class 객체가 아니라 .class이므로 클래스 자체를 지칭한것  = 예전 액티비티에서 현재 액티비티로 보낸다 (보내는 사람, 받는 대상) => 실행하면 newActivity가 나올 것임 
+
+이건 한 어플리케이션에서 액티비티와 액티비티를 부를 때 쓰는데,
+밑의 암시적 인텐트는 앱과 앱간에 부를 때 사용함 
+
+2. 암시적 Intent
+해당된다 싶으면 다 부름
+
+Intent sendIntent = new Intent();
+sendIntent.setAction(Intent.ACTION_CALL);
+startActivity(sendIntent);
+
+위에 코드는 우리가 인터넷 서핑을 하다가 전화번호를 발견했는데, 그 번호를 눌렀을 때 바로 통화가 되도록 하고 싶음 
