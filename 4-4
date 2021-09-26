@@ -1,0 +1,21 @@
+
+view-event(터치, 클릭하는 것이 이벤트임)
+
+event driven
+
+a. 버튼을 눌렀다.
+b. back key를 눌렀다
+c. 인터넷이 끊겼다
+d. 터치를 했다
+e. 화면을 가로로 뒤집었다
+f. 카톡이 왔다
+g. 문자가 왔다
+h. 전화가 왔다
+i. 배터리가 매우 부족하다
+
+listener 이런 이벤트를 잡아내기 위해서 리스너를 등록하고 대기시키는 것
+public interface OnLifeListener{
+   void onLife(boolean isSiljeon);
+}
+
+리스너는 인터페이스다 = 리스너는 결국 콜백이다 (콜백 강의 2-I, 실습 2-J)
