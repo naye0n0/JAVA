@@ -1,0 +1,30 @@
+- 화면을 만드는 것 
+
+view
+1. 화면 그 자체
+2. activity에 씌우는 화면 껍데기
+3. XML, Java 둘 중 하나로 작성 가능(보통 XML)
+4. 보통 widget, adapter, layout 계열로 나눌 수 있다. 
+
+widget
+1. textview , imageview 등,,
+2. 보통 사용자와 작동하는 용도가 뚜렷한 view들임 
+
+adapter
+1. listview, gridview, recyclerview 등..
+2. 많은 정보를 길게 스크롤하며 나열할 때 많이 씀
+
+layout
+1. linerlayout, relativelayout, framelayout 등.. 
+2. widget, adapter, layout을 담을 수 있는 틀
+3. 화면 공간을 분배할 때 많이 씀
+
+XML
+
+<View 
+android:layout_width=" "
+android:layout_height=" "
+위에 두개는 반드시 써야하는것
+이 밑에 뭐 더 써야하는데 여기선 생략하겠어요..
+
+</View>
