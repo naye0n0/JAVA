@@ -1,0 +1,15 @@
+안드로이드 view widget 계열
+
+text view 글자
+<TextView
+  android:layout_width="match_parent"
+  android:layout_height="warp_content"
+  android:text="주모오오오오-----!!
+  />
+
+imageview 이미지
+<ImageView
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:src="R.drawable.XXX"
+  />
