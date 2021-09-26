@@ -1,0 +1,32 @@
+view-layout
+
+linear layout
+
+<LinearLayout
+  android:orientation="vertical/horizontal"/>
+
+relative layout
+
+<RelativeLayout>
+<Button
+android:id="@+id/btn_toast"/>
+<ImageView
+android:layout above="@id/btn_toast"
+android:id="@+id/iv+photo"
+/>
+</RelativeLayout>
+
+위에꺼는 겹치지 않도록 해주고
+밑에꺼는 겹칠수도 있음 
+(관련 UI사진은 영상참고)
+
+frame layout
+
+<FrameLayout>
+<Button
+android:layout_gravity="bottom"
+/>
+<ImageView
+android:layout_gravity="center"
+/>
+</FrameLayout>
